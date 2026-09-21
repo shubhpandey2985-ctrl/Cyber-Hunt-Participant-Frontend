@@ -202,6 +202,7 @@ const server = createServer(async (req, res) => {
     return res.end();
   }
 
+  // Challenge and Submissions
   if (req.method === 'GET' && url.pathname === '/api/challenges/two-sum') {
     const { hiddenTests, ...publicChallenge } = challenge;
     return send(res, 200, publicChallenge);
@@ -245,11 +246,15 @@ const server = createServer(async (req, res) => {
     }
   }
 
+  // Static File Serving
   if (req.method === 'GET') {
     const relative = url.pathname === '/' ? 'landing.html' : decodeURIComponent(url.pathname).replace(/^\/+/, '');
+    
+    // Guard internal server files
     if (['challenge-data.json', 'submissions.json'].includes(relative)) {
       return send(res, 403, { error: 'Protected challenge data.' });
     }
+
     const file = path.resolve(root, relative);
     if (!file.startsWith(root)) return send(res, 403, { error: 'Forbidden' });
     try {
@@ -273,5 +278,4 @@ server.listen(3000, async () => {
   console.log('Cyber Hunt server listening on http://localhost:3000');
 });
 
-// Keep event loop alive
 setInterval(() => {}, 1000 * 60 * 60);
