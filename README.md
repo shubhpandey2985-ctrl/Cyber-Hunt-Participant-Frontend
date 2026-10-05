@@ -2,7 +2,7 @@
 
 ## Demo Link
 
-**link**: [click_Me](https://anmol-gupta2007.github.io/Cyber-Hunt-Participant-Frontend/)
+**link**: [click_Me](https://anmol-gupta2007.github.io/Cyber-Hunt-Participant-Frontend/landing.html)
 
 ## Run the challenge workspace
 
